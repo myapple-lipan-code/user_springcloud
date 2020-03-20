@@ -1,0 +1,27 @@
+package com.offcn.service;
+
+import com.offcn.config.FeignConfig;
+import com.offcn.po.User;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@FeignClient(value = "USERPROVIDER" ,configuration = FeignConfig.class)
+public interface UserService {
+    //新增
+    @PostMapping("/user/")
+     public void add(User user);
+     //修改
+    @PutMapping("/user/")
+    public  void update(User user);
+     //删除
+    @DeleteMapping("/user/{id}")
+    public  void delete(@PathVariable("id") Long id);
+    //查询全部
+    @GetMapping("/user/")
+    public Map<String,Object> findAll();
+    //根据 id 查询
+    @GetMapping("/user/{id}")
+    public User findOne(@PathVariable("id") Long id);
+}
