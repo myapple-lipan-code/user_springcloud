@@ -1,0 +1,13 @@
+#server port
+server:
+  port: 10086
+spring:
+  application:
+    name: EurekaServer     #应用名称
+eureka:
+  client:
+   # register-with-eureka: false  #是否注册到其他eureka注册中心
+   # fetch-registry: false   #是否拉取其他注册中心的信息
+    service-url:
+      defaultZone: http://localhost:10087/eureka #eureka的注册中心服务器的地址 程序地址是一个api接口
+      #真正的访问地址是http://localhost:8888
