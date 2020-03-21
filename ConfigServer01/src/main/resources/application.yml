@@ -1,0 +1,13 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: ConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/myapple-lipan-code/user_cloud_Configuration/
+          username: myapple-lipan-code
+          password: lipan15879542940
+          search-paths: configserver

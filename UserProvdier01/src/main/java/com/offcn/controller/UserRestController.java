@@ -3,6 +3,7 @@ package com.offcn.controller;
 import com.offcn.po.User;
 import com.offcn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -17,6 +18,9 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
+    @Value("${version}")
+    private String version;
+
     /**
      * 获取全部用户数据
      * @return
@@ -24,18 +28,17 @@ public class UserRestController {
     @GetMapping("/")
     public Map<String,Object> findAll(){
         List<User> userList = userService.findAll();
-        String version = "UserProvider01";
         HashMap<String, Object> map = new HashMap<>();
         map.put("list",userList);
         map.put("version",version);
         //随机休眠1500ms
-        try {
+        /*try {
             int sleep = new Random().nextInt(1500);
             Thread.sleep(sleep);
             System.out.println("sleep time:"+sleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         return map;
     }
     //获取指定用户id用户
