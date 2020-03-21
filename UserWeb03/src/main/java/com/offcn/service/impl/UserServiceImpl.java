@@ -1,5 +1,6 @@
 package com.offcn.service.impl;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.offcn.po.User;
 import com.offcn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -47,10 +50,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @HystrixCommand(fallbackMethod = "findAllFallback")
     public Map<String,Object> findAll() {
         Map forObject = restTemplate.getForObject(getServerInfo() + "/user/", Map.class);
         return forObject;
     }
+
+    /**
+     * 触发熔断  快速返回值
+     * 默认熔断超时时间是1000ms
+     * @return
+     */
+    public Map<String,Object> findAllFallback(){
+        Map<String,Object> map = new HashMap();
+        map.put("version","熔断被触发，远程调用失败");
+        map.put("list",new ArrayList<>());
+            return  map;
+    }
+
 
     @Override
     public User findOne(Long id) {

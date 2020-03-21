@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/user")
@@ -27,6 +28,14 @@ public class UserRestController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("list",userList);
         map.put("version",version);
+        //随机休眠1500ms
+        try {
+            int sleep = new Random().nextInt(1500);
+            Thread.sleep(sleep);
+            System.out.println("sleep time:"+sleep);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return map;
     }
     //获取指定用户id用户

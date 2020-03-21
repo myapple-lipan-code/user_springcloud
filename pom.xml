@@ -14,6 +14,7 @@
         <module>UserProvider02</module>
         <module>UserWeb03</module>
         <module>UserWeb04</module>
+        <module>NetflixHystrixDashboard</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

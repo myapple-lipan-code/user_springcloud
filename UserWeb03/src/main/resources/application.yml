@@ -13,19 +13,27 @@ eureka:
     service-url:
       defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka
 
+#设定 Hystrix 熔断超时时间
+hystrix:
+  command:
+    default:
+      execution:
+         isolation:
+            thread:
+              timeoutInMilliseconds: 6000
 USERPROVIDER:
   ribbon:         # 随机
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
 
     # Ribbon 的连接超时时间
-   ConnectTimeout: 250
+    #ConnectTimeout: 250
     # Ribbon 的数据读取超时时间
-    ReadTimeout: 250
+    #ReadTimeout: 250
     # 是否对所有操作都进行重试  所有的方法进行重试
     OkToRetryOnAllOperations: true
     # 切换实例的重试次数
     MaxAutoRetriesNextServer: 1
     # 对当前实例的重试次数
-    MaxAutoRetries: 1
+    MaxAutoRetries: 0
 
 
