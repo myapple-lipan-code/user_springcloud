@@ -1,0 +1,40 @@
+server:
+  port: 80
+spring:
+  application:
+    name: ZuulGateWay
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka
+zuul:
+  routes:
+    userprovider01:
+      path: /userprovider01/**
+      url: http://localhost:8001/
+    userprovider02:
+      path: /userprovider02/**
+      url: http://localhost:8002/
+    s3:
+      path: /s3/**
+      service-id: USERPROVIDER
+  retryable: true
+
+ribbon:
+  ConnectionTimeOut: 1000
+  ReadTimeout: 1000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 0
+  MaxAutoRetries: 5
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 9000
+
+
+
+

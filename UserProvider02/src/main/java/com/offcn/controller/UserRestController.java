@@ -30,18 +30,18 @@ public class UserRestController {
     @GetMapping("/")
     public Map<String,Object> findAll(){
         List<User> userList = userService.findAll();
-        String version = "UserProvider02";
         HashMap<String, Object> map = new HashMap<>();
         map.put("list",userList);
         map.put("version",version);
         //随机休眠1500ms
-       /* try {
+        System.out.println("服务2调用");
+        try {
             int sleep = new Random().nextInt(1500);
             Thread.sleep(sleep);
             System.out.println("sleep time:"+sleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         return map;
     }
     //获取指定用户id用户

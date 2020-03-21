@@ -17,6 +17,7 @@
         <module>NetflixHystrixDashboard</module>
         <module>ConfigServer01</module>
         <module>ConfigServer02</module>
+        <module>ZuulGateWay</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

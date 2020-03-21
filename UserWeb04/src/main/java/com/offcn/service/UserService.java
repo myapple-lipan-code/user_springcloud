@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(value = "USERPROVIDER" ,configuration = FeignConfig.class,fallback = UserServiceImpl.class)
+@FeignClient(value = "ZUULGATEWAY" ,configuration = FeignConfig.class,fallback = UserServiceImpl.class)
 public interface UserService {
     //新增
-    @PostMapping("/user/")
+    @PostMapping("/s3/user/?token=apple")
      public void add(User user);
      //修改
-    @PutMapping("/user/")
+    @PutMapping("/s3/user/?token=apple")
     public  void update(User user);
      //删除
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/s3/user/{id}?token=apple")
     public  void delete(@PathVariable("id") Long id);
     //查询全部
-    @GetMapping("/user/")
+    @GetMapping("/s3/user/?token=apple")
     public Map<String,Object> findAll();
     //根据 id 查询
-    @GetMapping("/user/{id}")
+    @GetMapping("/s3/user/{id}?token=apple")
     public User findOne(@PathVariable("id") Long id);
 }

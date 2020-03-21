@@ -33,14 +33,15 @@ public class UserRestController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("list",userList);
         map.put("version",version);
+        System.out.println("服务1调用");
         //随机休眠1500ms
-        /*try {
+        try {
             int sleep = new Random().nextInt(1500);
             Thread.sleep(sleep);
             System.out.println("sleep time:"+sleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         return map;
     }
     //获取指定用户id用户
