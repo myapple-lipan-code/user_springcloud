@@ -21,6 +21,7 @@ hystrix:
          isolation:
             thread:
               timeoutInMilliseconds: 6000
+
 USERPROVIDER:
   ribbon:         # 随机
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
@@ -30,9 +31,9 @@ USERPROVIDER:
     # Ribbon 的数据读取超时时间
     #ReadTimeout: 250
     # 是否对所有操作都进行重试  所有的方法进行重试
-    OkToRetryOnAllOperations: true
+    OkToRetryOnAllOperations: false
     # 切换实例的重试次数
-    MaxAutoRetriesNextServer: 1
+    MaxAutoRetriesNextServer: 0
     # 对当前实例的重试次数
     MaxAutoRetries: 0
 

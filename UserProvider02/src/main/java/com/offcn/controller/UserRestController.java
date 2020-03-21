@@ -3,6 +3,8 @@ package com.offcn.controller;
 import com.offcn.po.User;
 import com.offcn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -12,10 +14,14 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/user")
+@RefreshScope //刷新配置
 public class UserRestController {
 
     @Autowired
     private UserService userService;
+
+    @Value("${version}")
+    private  String version;
 
     /**
      * 获取全部用户数据
@@ -29,13 +35,13 @@ public class UserRestController {
         map.put("list",userList);
         map.put("version",version);
         //随机休眠1500ms
-        try {
+       /* try {
             int sleep = new Random().nextInt(1500);
             Thread.sleep(sleep);
             System.out.println("sleep time:"+sleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         return map;
     }
     //获取指定用户id用户

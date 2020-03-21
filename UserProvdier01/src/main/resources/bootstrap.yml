@@ -3,6 +3,12 @@ spring:
     name: UserProvider
   cloud:
     config:
-      profile: dev
-      label: master
-      uri: http://localhost:7001
+      discovery:
+        service-id: ConfigServer
+     profile: dev
+     label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka

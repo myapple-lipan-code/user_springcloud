@@ -4,6 +4,7 @@ import com.offcn.po.User;
 import com.offcn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/user")
+@RefreshScope //刷新配置
 public class UserRestController {
 
     @Autowired
